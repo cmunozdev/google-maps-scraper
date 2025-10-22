@@ -5,9 +5,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - '0.0.0.0:5433:5432'
+      - '0.0.0.0:5533:5533'
     expose:
-      - 5433
+      - 5533
     volumes: 
       - gmapsdev:/var/lib/postgresql/data
     restart: "unless-stopped"
@@ -20,7 +20,7 @@ services:
     image: migrate/migrate
     volumes:
       - ./scripts/migrations:/migrations
-    command: ["-path", "/migrations", "-database",  "postgres://postgres:postgres@db:5432/postgres?sslmode=disable", "up"]
+    command: ["-path", "/migrations", "-database",  "postgres://postgres:postgres@db:5533/postgres?sslmode=disable", "up"]
     healthcheck:
       test: "exit 0"
     depends_on:
